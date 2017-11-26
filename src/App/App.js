@@ -7,19 +7,10 @@
 
 import React from 'react';
 import isEqual from 'lodash/isEqual';
-import { graphql, QueryRenderer } from 'react-relay';
 
-import relay from '../relay';
 import router from '../router';
 import history from '../history';
 import AppRenderer from './AppRenderer';
-
-// eslint-disable-next-line no-unused-expressions
-graphql`
-  fragment App_me on User {
-    ...AppToolbar_me
-  }
-`;
 
 type ReadyState = {
   error: ?Error,
@@ -32,7 +23,6 @@ type Render = (Array<React.Element<*>>, ?Object, ?Object) => any;
 type State = {
   location: Location,
   params: Object,
-  query: ?Object,
   variables: Object,
   components: ?Array<React.Element<*>> | Promise<Array<React.Element<*>>>,
   render: ?Render,
@@ -42,7 +32,6 @@ class App extends React.Component<any, any, State> {
   state = {
     location: history.location,
     params: {},
-    query: null,
     variables: {},
     components: null,
     render: null,
@@ -69,40 +58,15 @@ class App extends React.Component<any, any, State> {
       this.setState({ ...route, location, variables });
     });
 
-  renderState = ({ error, props, retry }: ReadyState) => (
-    <AppRenderer
-      error={error}
-      data={props}
-      retry={retry}
-      query={this.state.query}
-      location={this.state.location}
-      params={this.state.params}
-      components={this.state.components}
-      render={this.state.render}
-    />
-  );
-
   render() {
     return (
-      <QueryRenderer
-        environment={relay}
-        query={this.state.query}
-        variables={this.state.variables}
-        render={this.renderState}
+      <AppRenderer
+        location={this.state.location}
+        params={this.state.params}
+        components={this.state.components}
+        render={this.state.render}
       />
     );
   }
 }
-
-// A hook that makes it possible to pre-render the app during compilation.
-// Fore more information visit https://github.com/kriasoft/pre-render
-window.prerender = async path => {
-  history.push(path);
-  // TODO: Detect when client-side rendering is complete
-  await new Promise(resolve => setTimeout(resolve, 500));
-  return document.documentElement.outerHTML
-    .replace(/<link type="text\/css" rel="stylesheet" href="blob:.*?>/g, '')
-    .replace(/<script .*?<\/head>/g, '</head>');
-};
-
 export default App;

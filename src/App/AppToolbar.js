@@ -7,11 +7,9 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { graphql, createFragmentContainer } from 'react-relay';
 
 import Link from '../Link';
 import AppLogo from './AppLogo';
-import type { AppToolbar_me } from './__generated__/AppToolbar_me.graphql';
 
 const Header = styled.header`
   position: relative;
@@ -104,7 +102,7 @@ const NavLinkLast = styled(NavLink)`
   }
 `;
 
-class AppToolbar extends React.Component {
+export default class AppToolbar extends React.Component {
   props: {
     me: AppToolbar_me,
     hero: React.Element<*>,
@@ -136,12 +134,3 @@ class AppToolbar extends React.Component {
     );
   }
 }
-
-export default createFragmentContainer(
-  AppToolbar,
-  graphql`
-    fragment AppToolbar_me on User {
-      displayName
-    }
-  `,
-);

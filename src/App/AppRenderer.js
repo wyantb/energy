@@ -24,7 +24,6 @@ type Props = {
   error: ?Error,
   data: ?Object,
   retry: () => void,
-  query: Function,
   location: Location,
   params: Object,
   components: Array<React.Element<*>> | Promise<Array<React.Element<*>>>,
@@ -112,7 +111,6 @@ class AppRenderer extends React.Component<any, Props, State> {
       <div>
         <AppToolbar me={null} hero={this.state.hero} />
         <Main>{this.state.body || <p>Loading...</p>}</Main>
-        <AppFooter />
       </div>
     );
   }
