@@ -7,16 +7,12 @@
 
 import React from 'react';
 
-class AboutPage extends React.Component {
+export default class Home extends React.Component {
   render() {
     return (
       <div>
-        <h2>About Us</h2>
-        <p>Coming soon.</p>
-        {Array.from({ length: 50 }).map((_, i) => <br key={i} />)}
+        <h2>Here's all about your energy usage yo</h2>
       </div>
     );
   }
 }
-
-export default AboutPage;

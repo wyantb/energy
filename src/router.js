@@ -16,39 +16,27 @@ const routes = [
   {
     path: '/',
     components: () => [
-      import(/* webpackChunkName: 'home' */ './Home'),
-      import(/* webpackChunkName: 'home' */ './Home/Hero'),
+      import(/* webpackChunkName: 'home' */ './views/Home'),
     ],
-    render: ([Home, Hero], data) => ({
+    render: ([Home], data) => ({
       title: 'Home page',
-      hero: <Hero />,
       body: <Home />,
     }),
   },
   {
     path: '/error',
-    components: () => [import(/* webpackChunkName: 'main' */ './ErrorPage')],
+    components: () => [import(/* webpackChunkName: 'main' */ './views/ErrorPage')],
     render: ([ErrorPage]) => ({
       title: 'Error',
       body: <ErrorPage />,
     }),
   },
   {
-    path: '/getting-started',
-    components: () => [
-      import(/* webpackChunkName: 'start' */ './GettingStarted'),
-    ],
-    render: ([GettingStarted]) => ({
-      title: 'Getting Started',
-      body: <GettingStarted />,
-    }),
-  },
-  {
-    path: '/about',
-    components: () => [import(/* webpackChunkName: 'about' */ './About')],
-    render: ([About]) => ({
-      title: 'About Us',
-      body: <About />,
+    path: '/summary',
+    components: () => [import(/* webpackChunkName: 'main' */ './views/SummaryPage')],
+    render: ([SummaryPage]) => ({
+      title: 'Your Energy Usage',
+      body: <SummaryPage />,
     }),
   },
 ];

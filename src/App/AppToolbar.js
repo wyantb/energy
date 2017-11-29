@@ -8,7 +8,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Link from '../Link';
+import Link from '../views/Link';
 import AppLogo from './AppLogo';
 
 const Header = styled.header`
@@ -115,12 +115,11 @@ export default class AppToolbar extends React.Component {
           <Section start>
             <TitleLink href="/">
               <Logo />
-              React Static
             </TitleLink>
           </Section>
           <Section end>
-            <NavLink href="/getting-started">Get Started</NavLink>
-            <NavLinkLast href="/about">About</NavLinkLast>
+            <NavLink href="#">Get Started</NavLink>
+            <NavLinkLast href="#">About</NavLinkLast>
           </Section>
         </Row>
         {this.props.hero &&

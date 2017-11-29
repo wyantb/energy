@@ -10,8 +10,7 @@ import styled from 'styled-components';
 import isEqual from 'lodash/isEqual';
 
 import AppToolbar from './AppToolbar';
-import AppFooter from './AppFooter';
-import ErrorPage from '../ErrorPage';
+import ErrorPage from '../views/ErrorPage';
 
 const Main = styled.div`
   max-width: 600px;

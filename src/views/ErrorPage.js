@@ -9,7 +9,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import history from '../history';
-import Link from '../Link';
+import Link from './Link';
 
 const color = '#607d8b';
 

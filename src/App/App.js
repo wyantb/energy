@@ -8,15 +8,11 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
 
+import { Provider } from 'react-redux'
+import store from '../store';
 import router from '../router';
 import history from '../history';
 import AppRenderer from './AppRenderer';
-
-type ReadyState = {
-  error: ?Error,
-  props: ?Object,
-  retry: ?() => void,
-};
 
 type Render = (Array<React.Element<*>>, ?Object, ?Object) => any;
 
@@ -60,12 +56,14 @@ class App extends React.Component<any, any, State> {
 
   render() {
     return (
-      <AppRenderer
-        location={this.state.location}
-        params={this.state.params}
-        components={this.state.components}
-        render={this.state.render}
-      />
+      <Provider store={store}>
+        <AppRenderer
+          location={this.state.location}
+          params={this.state.params}
+          components={this.state.components}
+          render={this.state.render}
+        />
+      </Provider>
     );
   }
 }

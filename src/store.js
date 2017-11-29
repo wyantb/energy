@@ -5,20 +5,21 @@
 
 /* @flow */
 
-import { createStore } from 'redux';
 
-// Centralized application state
-// For more information visit http://redux.js.org/
-const initialState = { count: 0 };
+import { createStore, applyMiddleware } from 'redux';
+import { combineReducers } from 'redux';
+import * as reducers from './reducers';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+console.log('loaded');
 
-const store = createStore((state = initialState, action) => {
-  // TODO: Add action handlers (aka "reducers")
-  switch (action.type) {
-    case 'COUNT':
-      return { ...state, count: state.count + 1 };
-    default:
-      return state;
-  }
-});
+const loggerMiddleware = createLogger()
+const store = createStore(
+  combineReducers(reducers),
+  applyMiddleware(
+    thunkMiddleware,
+    loggerMiddleware,
+  )
+);
 
 export default store;
