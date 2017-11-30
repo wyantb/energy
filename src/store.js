@@ -11,9 +11,8 @@ import { combineReducers } from 'redux';
 import * as reducers from './reducers';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-console.log('loaded');
 
-const loggerMiddleware = createLogger()
+const loggerMiddleware = createLogger();
 const store = createStore(
   combineReducers(reducers),
   applyMiddleware(

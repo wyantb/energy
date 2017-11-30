@@ -21,5 +21,5 @@ export default function requestLogin(login) {
       }, 200);
     });
   };
-};
+}
 

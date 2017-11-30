@@ -33,7 +33,7 @@ const routes = [
   },
   {
     path: '/summary',
-    components: () => [import(/* webpackChunkName: 'main' */ './views/SummaryPage')],
+    components: () => [import(/* webpackChunkName: 'main' */ './containers/SummaryPage')],
     render: ([SummaryPage]) => ({
       title: 'Your Energy Usage',
       body: <SummaryPage />,

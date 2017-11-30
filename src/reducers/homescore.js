@@ -1,24 +1,23 @@
 
-import { LOGIN_ACTION, LOGIN_SUCCESS } from '../actions/login';
+import { REQUEST_HOMESCORE, HOMESCORE_GET } from '../actions/homescore';
 
 const initialState = {
   user: null,
-  loggedIn: false
+  details: {},
+  isLoaded: false,
 };
 
 export default function login(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_ACTION:
+    case REQUEST_HOMESCORE:
       return Object.assign({}, state, {
         user: action.user,
-        name: action.name,
-        loggedIn: false,
       });
-    case LOGIN_SUCCESS:
+    case HOMESCORE_GET:
+      console.log(action);
       return Object.assign({}, state, {
-        user: state.user,
-        name: action.name,
-        loggedIn: true,
+        isLoaded: true,
+        details: action.homescore,
       });
     default:
       return state;

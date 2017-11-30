@@ -1,6 +1,6 @@
 
 import { connect } from 'react-redux'
-import Login from '../views/Login';
+import LoginView from '../views/Login';
 import requestLogin from '../actions/login';
 import history from '../history'
 
@@ -20,7 +20,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onLoginClick: () => {
-      console.log('waiting...')
       dispatch(requestLogin({ user: 1, name: 'Billy' })).then(
         () => { forwardToSummary(); },
         () => { alert('Something went wrong during login. There is no hope now...'); },
@@ -32,10 +31,10 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const DoLogin = connect(
+const Login = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Login);
+)(LoginView);
 
-export default DoLogin;
+export default Login;
 
