@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import history from '../history';
 import SummaryPageView from '../views/SummaryPage';
 import requestHomescore from '../actions/homescore';
+import requestDailyUsage from '../actions/dailyUsage';
+import map from 'lodash/map';
+import filter from 'lodash/filter';
+import first from 'lodash/first';
 
 const redirectToLogin = () => {
   history.push('/');
@@ -16,13 +20,25 @@ const mapStateToProps = state => {
     redirectToLogin: redirectToLogin,
     isLoaded: state.homescore.isLoaded,
     homescoreSummary: state.homescore.details.score_text,
+    energyUsers: map(filter(state.dailyUsageByUser, 'isLoaded'), (energyUsage, userId) => {
+      return {
+        user: userId,
+        energyUsage: map(energyUsage.dailyEnergyUsage, (usageAndDay) => {
+          return {
+            x: first(Object.keys(usageAndDay)),
+            y: first(Object.values(usageAndDay)),
+          };
+        })
+      };
+    }),
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchData: (userId) => {
-      return dispatch(requestHomescore(userId));
+      dispatch(requestHomescore(userId));
+      dispatch(requestDailyUsage(userId));
     },
   };
 };
