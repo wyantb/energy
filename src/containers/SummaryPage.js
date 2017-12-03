@@ -20,9 +20,13 @@ const mapStateToProps = state => {
     redirectToLogin: redirectToLogin,
     isLoaded: state.homescore.isLoaded,
     homescoreSummary: state.homescore.details.score_text,
-    energyUsers: map(filter(state.dailyUsageByUser, 'isLoaded'), (energyUsage, userId) => {
+    energyUsers: filter(map(state.dailyUsageByUser, (energyUsage, userId) => {
+      if (!energyUsage.isLoaded) {
+        return false;
+      }
       return {
         user: userId,
+        isCurrentUser: userId === state.login.user,
         energyUsage: map(energyUsage.dailyEnergyUsage, (usageAndDay) => {
           const usage = first(Object.values(usageAndDay));
           return {
@@ -32,7 +36,7 @@ const mapStateToProps = state => {
           };
         })
       };
-    }),
+    }), 'user'),
   };
 };
 

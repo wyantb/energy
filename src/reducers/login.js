@@ -2,7 +2,7 @@
 import { LOGIN_ACTION, LOGIN_SUCCESS, LOGIN_CHANGE_USER_NAME, LOGIN_CHANGE_USER_ID } from '../actions/login';
 
 const initialState = {
-  user: 1,
+  user: '1',
   name: 'Brian',
   loggedIn: false,
 };

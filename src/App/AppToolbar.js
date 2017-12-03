@@ -95,13 +95,6 @@ const NavLink = styled(Link)`
   letter-spacing: 1px;
 `;
 
-const NavLinkLast = styled(NavLink)`
-  margin-right: 24px;
-  @media (max-width: 599px) {
-    margin-right: 16px;
-  }
-`;
-
 export default class AppToolbar extends React.Component {
   props: {
     me: AppToolbar_me,

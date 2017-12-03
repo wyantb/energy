@@ -9,7 +9,7 @@ export default function requestDailyUsage(userId) {
   return dispatch => {
     dispatch({
       type: REQUEST_DAILY_USAGE,
-      user: userId
+      user: userId,
     });
     return fetch(dailyUsageUrl(userId)).then(
       response => response.json(),

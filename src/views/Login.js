@@ -1,6 +1,5 @@
 
 import React from 'react';
-import Link from './Link';
 import { FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 
 export default class Login extends React.Component {

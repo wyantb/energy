@@ -7,6 +7,7 @@
 
 import React from 'react';
 import { VictoryTheme, VictoryChart, VictoryLine, VictoryTooltip, VictoryVoronoiContainer, VictoryAxis } from 'victory';
+import ComparisonList from '../containers/ComparisonList';
 import isEmpty from 'lodash/isEmpty';
 
 export default class SummaryPage extends React.Component {
@@ -28,7 +29,12 @@ export default class SummaryPage extends React.Component {
 
     let graph;
     if (!isEmpty(this.props.energyUsers)) {
-      console.log(this.props.energyUsers);
+      const linePlots = this.props.energyUsers.map(function (userAndUsage) {
+        return <VictoryLine data={userAndUsage.energyUsage} key={userAndUsage.user}
+          labelComponent={<VictoryTooltip />}
+          style={userAndUsage.isCurrentUser ? { data: { stroke: '#c43a31' }} : {}}
+        />;
+      });
       graph = (
         <VictoryChart theme={VictoryTheme.material} containerComponent={<VictoryVoronoiContainer/>}
           height={250}
@@ -38,9 +44,7 @@ export default class SummaryPage extends React.Component {
               tickLabels: { display: 'none' },
             }} />
           <VictoryAxis dependentAxis />
-          <VictoryLine data={this.props.energyUsers[0].energyUsage}
-            labelComponent={<VictoryTooltip />}
-          />
+          {linePlots}
         </VictoryChart>
       );
     }
@@ -63,6 +67,9 @@ export default class SummaryPage extends React.Component {
             {this.props.homescoreSummary}
           </div>)}
         {graphAndIntro}
+        <div>Compare your energy usage to the energy usage of friends:</div>
+        <br />
+        <ComparisonList />
       </div>
     );
   }
