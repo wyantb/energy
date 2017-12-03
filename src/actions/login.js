@@ -1,21 +1,36 @@
 
 export const LOGIN_ACTION = 'LOGIN_ACTION';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_CHANGE_USER_NAME = 'LOGIN_CHANGE_USER_NAME';
+export const LOGIN_CHANGE_USER_ID = 'LOGIN_CHANGE_USER_ID';
 
-export default function requestLogin(login) {
+export function changeUserName(name) {
+  return dispatch => {
+    return dispatch({
+      type: LOGIN_CHANGE_USER_NAME,
+      name: name,
+    });
+  };
+}
+
+export function changeUserId(userId) {
+  return dispatch => {
+    return dispatch({
+      type: LOGIN_CHANGE_USER_ID,
+      user: userId,
+    });
+  };
+}
+
+export function requestLogin(login) {
   return dispatch => {
     dispatch({
       type: LOGIN_ACTION,
-      user: login.user,
-      name: login.name,
     });
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // TODO change route
         dispatch({
           type: LOGIN_SUCCESS,
-          user: login.user,
-          name: login.name,
         });
         resolve();
       }, 200);

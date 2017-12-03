@@ -18,7 +18,7 @@ const Header = styled.header`
   box-sizing: border-box;
   color: #fff;
   flex-direction: column;
-  background-color: darkslategray;
+  background-color: #e6168b;
   justify-content: space-between;
 `;
 
@@ -26,7 +26,7 @@ const Row = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  height: 64px;
+  height: 48px;
   box-sizing: border-box;
   align-items: center;
   @media (max-width: 959px) and (orientation: landscape) {
@@ -79,8 +79,8 @@ const TitleLink = styled(Link)`
 `;
 
 const Logo = styled(AppLogo)`
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   margin-right: 16px;
 `;
 
@@ -118,8 +118,7 @@ export default class AppToolbar extends React.Component {
             </TitleLink>
           </Section>
           <Section end>
-            <NavLink href="#">Get Started</NavLink>
-            <NavLinkLast href="#">About</NavLinkLast>
+            <NavLink href="#">About</NavLink>
           </Section>
         </Row>
         {this.props.hero &&

@@ -1,7 +1,7 @@
 
 import { connect } from 'react-redux'
 import LoginView from '../views/Login';
-import requestLogin from '../actions/login';
+import { requestLogin, changeUserName, changeUserId } from '../actions/login';
 import history from '../history'
 
 const forwardToSummary = () => {
@@ -10,6 +10,8 @@ const forwardToSummary = () => {
 
 const mapStateToProps = state => {
   return {
+    userName: state.login.name,
+    userId: state.login.user,
     loggedIn: state.login.loggedIn,
     display: state.login.loggedIn ?
       `Continue to your Summary, ${state.login.name}` :
@@ -27,7 +29,13 @@ const mapDispatchToProps = dispatch => {
     },
     onSummaryClick: () => {
       forwardToSummary();
-    }
+    },
+    nameChange: (ev) => {
+      dispatch(changeUserName(ev.target.value));
+    },
+    userChange: (ev) => {
+      dispatch(changeUserId(ev.target.value));
+    },
   }
 }
 
