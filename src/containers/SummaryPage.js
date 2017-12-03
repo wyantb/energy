@@ -24,9 +24,11 @@ const mapStateToProps = state => {
       return {
         user: userId,
         energyUsage: map(energyUsage.dailyEnergyUsage, (usageAndDay) => {
+          const usage = first(Object.values(usageAndDay));
           return {
             x: first(Object.keys(usageAndDay)),
-            y: first(Object.values(usageAndDay)),
+            y: usage,
+            label: `${usage} kWh`
           };
         })
       };

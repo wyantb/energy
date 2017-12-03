@@ -6,7 +6,7 @@
 /* @flow */
 
 import React from 'react';
-import { VictoryTheme, VictoryChart, VictoryLine } from 'victory';
+import { VictoryTheme, VictoryChart, VictoryLine, VictoryTooltip, VictoryVoronoiContainer, VictoryAxis } from 'victory';
 import isEmpty from 'lodash/isEmpty';
 
 export default class SummaryPage extends React.Component {
@@ -28,10 +28,31 @@ export default class SummaryPage extends React.Component {
 
     let graph;
     if (!isEmpty(this.props.energyUsers)) {
+      console.log(this.props.energyUsers);
       graph = (
-        <VictoryChart theme={VictoryTheme.material}>
-          <VictoryLine data={this.props.energyUsers[0].energyUsage} />
+        <VictoryChart theme={VictoryTheme.material} containerComponent={<VictoryVoronoiContainer/>}
+          height={250}
+        >
+          <VictoryAxis style={{
+              ticks: { stroke: 'none' },
+              tickLabels: { display: 'none' },
+            }} />
+          <VictoryAxis dependentAxis />
+          <VictoryLine data={this.props.energyUsers[0].energyUsage}
+            labelComponent={<VictoryTooltip />}
+          />
         </VictoryChart>
+      );
+    }
+
+    let graphAndIntro;
+    if (graph) {
+      graphAndIntro = (
+        <div>
+          <br/>
+          <div>Here's what your energy usage looks like over the past month:</div>
+          {graph}
+        </div>
       );
     }
 
@@ -41,7 +62,7 @@ export default class SummaryPage extends React.Component {
         {!this.props.isLoaded ? (<div>Loading...</div>) : (<div>
             {this.props.homescoreSummary}
           </div>)}
-        {graph}
+        {graphAndIntro}
       </div>
     );
   }

@@ -13,8 +13,11 @@ import AppToolbar from './AppToolbar';
 import ErrorPage from '../views/ErrorPage';
 
 const Main = styled.div`
-  max-width: 600px;
+  max-width: 850px;
   padding: 1rem;
+  border: 50px solid white;
+  border-top: none;
+  border-bottom: none;
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.1);
 `;

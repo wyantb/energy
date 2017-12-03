@@ -14,6 +14,9 @@ export default function dailyUsage(state = initialState, action) {
       });
       return res;
     case DAILY_USAGE_GET:
+      if (!action.dailyUsage.daily_energy_usage.length) {
+        return state;
+      }
       return Object.assign({}, state, {
         [action.user]: {
           isLoaded: true,
