@@ -106,7 +106,7 @@ export default class AppToolbar extends React.Component {
       <Header>
         <Row>
           <Section start>
-            <TitleLink href="/">
+            <TitleLink href="./">
               <Logo />
             </TitleLink>
           </Section>

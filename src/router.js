@@ -14,7 +14,7 @@ import Router from 'universal-router';
 // For more information visit https://github.com/kriasoft/universal-router
 const routes = [
   {
-    path: '/',
+    path: ['/', '/energy/'],
     components: () => [
       import(/* webpackChunkName: 'home' */ './views/Home'),
     ],
@@ -24,7 +24,7 @@ const routes = [
     }),
   },
   {
-    path: '/error',
+    path: ['/error', '/energy/error'],
     components: () => [import(/* webpackChunkName: 'main' */ './views/ErrorPage')],
     render: ([ErrorPage]) => ({
       title: 'Error',
@@ -32,7 +32,7 @@ const routes = [
     }),
   },
   {
-    path: '/summary',
+    path: ['/summary', '/energy/summary'],
     components: () => [import(/* webpackChunkName: 'main' */ './containers/SummaryPage')],
     render: ([SummaryPage]) => ({
       title: 'Your Energy Usage',

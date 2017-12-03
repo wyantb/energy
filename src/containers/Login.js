@@ -5,7 +5,7 @@ import { requestLogin, changeUserName, changeUserId } from '../actions/login';
 import history from '../history'
 
 const forwardToSummary = () => {
-  history.push('/summary');
+  history.push('./summary');
 };
 
 const mapStateToProps = state => {

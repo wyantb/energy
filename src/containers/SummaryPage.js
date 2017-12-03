@@ -9,7 +9,7 @@ import filter from 'lodash/filter';
 import first from 'lodash/first';
 
 const redirectToLogin = () => {
-  history.push('/');
+  history.push('./');
 };
 
 const mapStateToProps = state => {
